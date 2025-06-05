@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "@tsconfig/node22": "^22.0.2",
+    "@types/estree": "^1.0.7",
+    "@types/json-schema": "^7.0.15",
+    "@vue/tsconfig": "^0.7.0"
+  }
+}
