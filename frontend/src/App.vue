@@ -5,11 +5,11 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/devdocs">Dev Docs</RouterLink>
+    <div class="flex flex-wrap py-1 ">
+      <nav class="text-lg flex justify-between gap-2">
+        <RouterLink class="dark:text-cyan-300 text-cyan-700 hover:bg-cyan-100 hover:dark:bg-cyan-800"  to="/">Home</RouterLink>
+        <RouterLink class="dark:text-cyan-300 text-cyan-700 hover:bg-cyan-100 hover:dark:bg-cyan-800" to="/about">About</RouterLink>
+        <RouterLink class="dark:text-cyan-300 text-cyan-700 hover:bg-cyan-100 hover:dark:bg-cyan-800"  to="/devdocs">Dev Docs</RouterLink>
       </nav>
     </div>
   </header>
@@ -18,32 +18,11 @@ import { RouterLink, RouterView } from 'vue-router'
 </template>
 
 <style scoped>
-header .wrapper {
-  display: flex;
-  place-items: flex-start;
-  flex-wrap: wrap;
-}
-
-nav {
-  font-size: 1rem;
-  padding: 1rem 0;
-}
-
 nav a.router-link-exact-active {
-  color: var(--color-text);
+  color: unset;
 }
 
 nav a.router-link-exact-active:hover {
   background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
 }
 </style>
