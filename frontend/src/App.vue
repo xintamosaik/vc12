@@ -7,9 +7,19 @@ import { RouterLink, RouterView } from 'vue-router'
   <header>
     <div class="flex flex-wrap py-1 ">
       <nav class="text-lg flex justify-between gap-2">
-        <RouterLink class="dark:text-cyan-300 text-cyan-700 hover:bg-cyan-100 hover:dark:bg-cyan-800"  to="/">Home</RouterLink>
-        <RouterLink class="dark:text-cyan-300 text-cyan-700 hover:bg-cyan-100 hover:dark:bg-cyan-800" to="/about">About</RouterLink>
-        <RouterLink class="dark:text-cyan-300 text-cyan-700 hover:bg-cyan-100 hover:dark:bg-cyan-800"  to="/devdocs">Dev Docs</RouterLink>
+        <RouterLink class="nav-link" to="/">
+          Home
+        </RouterLink>
+        <RouterLink class="nav-link" to="/drafts">
+          Drafts
+        </RouterLink>
+        <RouterLink class="nav-link" to="/signals">
+          Signals
+        </RouterLink>
+        <RouterLink class="nav-link" to="/intel">
+          Intel
+        </RouterLink>
+ 
       </nav>
     </div>
   </header>

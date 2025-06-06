@@ -6,3 +6,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.nav-link {
+  @apply dark:text-cyan-300 text-cyan-700 hover:bg-cyan-100 hover:dark:bg-cyan-800;
+}
