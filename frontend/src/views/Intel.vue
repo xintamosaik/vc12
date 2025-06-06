@@ -5,6 +5,5 @@
      Capture new Intel
     </RouterLink>
   </div>
-    <RouterView />
 </template>
 

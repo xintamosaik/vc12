@@ -1,5 +1,15 @@
 <script setup lang="ts">
+import { reactive } from 'vue'
 
+const intel = reactive({
+  title: '',
+  description: ''
+})
+
+function submitIntel() {
+  // Add your submission logic here
+  console.log('Submitting Intel:', intel)
+}
 </script>
 <template>
   <div>
@@ -20,22 +30,5 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  data() {
-    return {
-      intel: {
-        title: '',
-        description: ''
-      }
-    };
-  },
-  methods: {
-    submitIntel() {
-      // Add your submission logic here
-      console.log('Submitting Intel:', this.intel);
-    }
-  }
-}
-</script>
+
 

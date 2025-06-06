@@ -22,14 +22,15 @@ const router = createRouter({
       path: '/intel',
       name: 'intel',
       component: () => import('../views/Intel.vue'),
-      children: [
-        {
-          path: '/new',
-          name: 'new',
-          component: () => import('../views/New.vue'),
-        }
-      ]
-    }
+
+
+
+    },
+    {
+      path: '/intel/new',
+      name: 'IntelNew',
+      component: () => import('../views/New.vue'),
+    },
   ],
 })
 
