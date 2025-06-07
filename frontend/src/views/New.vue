@@ -20,10 +20,23 @@ function lockIntel() {
 
 }
 function submitIntel() {
-  // Add your submission logic here
-  console.log('Submitting Intel:', intel)
-  // API endpoint will be something like /api/intel/new
-  // Has to be a POST request with the intel object in the body
+  // Send the intel object as JSON to the backend
+  fetch('/intel/new', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(intel),
+  })
+    .then(response => response.text())
+    .then(data => {
+      console.log('Response from backend:', data)
+      // Optionally, show a success message or redirect
+    })
+    .catch(error => {
+      console.error('Error submitting intel:', error)
+      // Optionally, show an error message
+    })
 }
 
 
