@@ -8,12 +8,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.beans.factory.annotation.Autowired;
 
-record Intel(String title, String description, String content) {}
+@Document(collection = "intel")
+record Intel(String id, String title, String description, String content) {}
 
 @SpringBootApplication
 @RestController
 public class BackendApplication {
+  @Autowired
+  private IntelRepository intelRepository;
+
   public static void main(String[] args) {
     SpringApplication.run(BackendApplication.class, args);
   }
@@ -25,14 +31,8 @@ public class BackendApplication {
 
   @PostMapping("/intel/new")
   public Intel postMethodName(@RequestBody Intel entity) {
-    System.out.println("Received entity: " + entity);
-    System.out.println("Title: " + entity.title());
-    System.out.println("Description: " + entity.description());
-    System.out.println("Content: " + entity.content());
-    
-    return entity;
+    Intel saved = intelRepository.save(entity);
+    System.out.println("Saved entity: " + saved);
+    return saved;
   }
-
-  
-
 }
