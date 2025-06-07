@@ -22,7 +22,7 @@ onMounted(async () => {
     <RouterLink class="nav-link" to="/intel/new">
       Capture new Intel
     </RouterLink>
-    <section>
+    <section class="flex flex-col gap-2">
 
 
       <RouterLink v-for="intel in intelList" :key="intel.id" :to="{ path: `/intel/view/${intel.id}` }" class="nav-link"
