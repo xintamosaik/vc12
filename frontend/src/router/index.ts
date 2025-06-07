@@ -22,14 +22,17 @@ const router = createRouter({
       path: '/intel',
       name: 'intel',
       component: () => import('../views/Intel.vue'),
-
-
-
     },
     {
       path: '/intel/new',
       name: 'IntelNew',
-      component: () => import('../views/New.vue'),
+      component: () => import('../views/IntelNew.vue'),
+    },
+    {
+      path: '/intel/view/:id',
+      name: 'IntelDetail',
+      component: () => import('../views/IntelEdit.vue'),
+      props: true,
     },
   ],
 })

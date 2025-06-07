@@ -35,4 +35,11 @@ public class BackendApplication {
     System.out.println("Saved entity: " + saved);
     return saved;
   }
+
+  @GetMapping("/intel/all")
+  public Iterable<Intel> getAllIntel() {
+    Iterable<Intel> allIntel = intelRepository.findAll();
+    System.out.println("All Intel: " + allIntel);
+    return allIntel;  
+  }
 }
