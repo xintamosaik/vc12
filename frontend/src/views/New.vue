@@ -70,29 +70,31 @@ function submitIntel() {
       </div>
 
       <div>
-      <h2>Description</h2>
-      <p>
-        The description of the Intel. This is optional, but can help you to remmber where the intel came from.
-      </p>
+        <h2>Description</h2>
+        <p>
+          The description of the Intel. This is optional, but can help you to remmber where the intel came from.
+        </p>
       </div>
-      
+
       <div>
-      <h2>Content</h2>
-      <p>
-        The content of the Intel. This is the main body of the Intel. It can be a long text, or a short summary.
-      </p>
-      <p>
-        The content should be in plain text or markdown. Markdown will just enhance the readability of the content, but
-        is not required.
-      </p>
+        <h2>Content</h2>
+        <p>
+          The content of the Intel. This is the main body of the Intel. It can be a long text, or a short summary.
+        </p>
+        <p>
+          The content should be in plain text or markdown. Markdown will just enhance the readability of the content,
+          but
+          is not required.
+        </p>
       </div>
-      
+
       <div>
-      <h2>Lock</h2>
-      <p>
-        The lock button will lock the Intel, preventing further edits. This is necessary to start the review process. At
-        this point we don't support edits after annotations, becaues it requires a compicated review process.
-      </p>
+        <h2>Lock</h2>
+        <p>
+          The lock button will lock the Intel, preventing further edits. This is necessary to start the review process.
+          At
+          this point we don't support edits after annotations, becaues it requires a compicated review process.
+        </p>
       </div>
     </div>
 
