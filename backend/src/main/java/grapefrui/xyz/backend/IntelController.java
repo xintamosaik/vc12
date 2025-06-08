@@ -17,4 +17,9 @@ public class IntelController {
     public Iterable<Intel> getAllIntel() {
         return intelRepository.findAll();
     }
+
+    @GetMapping("/intel/{id}")
+    public Intel getIntelById(@PathVariable String id) {
+        return intelRepository.findById(id).orElse(null);
+    }
 }
