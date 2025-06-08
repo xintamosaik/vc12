@@ -3,7 +3,6 @@ package grapefrui.xyz.backend;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 @RestController
 public class IntelController {
     @Autowired
