@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
 type Intel = {
   id: number
@@ -11,7 +12,7 @@ type Intel = {
 const intelList = ref([] as Intel[])
 
 onMounted(async () => {
-  const res = await fetch('/intel/all')
+  const res = await fetch(`${API_URL}/intel/all`)
   intelList.value = await res.json() as Intel[]
 })
 </script>

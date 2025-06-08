@@ -19,9 +19,11 @@ function lockIntel() {
   // This is to prevent a complicated review process.
 
 }
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
 function submitIntel() {
   // Send the intel object as JSON to the backend
-  fetch('/intel/new', {
+  fetch( `${API_URL}/intel/new`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
