@@ -66,6 +66,19 @@ function fetchIntel(id: string) {
     })
 }
 
+function askForKeyword(event: Event) {
+  const selection = window.getSelection();
+  if (selection && selection.rangeCount > 0) {
+    const range = selection.getRangeAt(0);
+    annotation.start = range.startOffset;
+    annotation.end = range.endOffset;
+    annotation.text = selection.toString();
+    console.log('Selected text:', annotation.text);
+    // Here you can open a dialog or a prompt to ask for the keyword
+    // For now, we will just log it
+  }
+}
+
 onMounted(() => {
   const urlParams = new URLSearchParams(window.location.search);
   // http://localhost:5173/intel/view/68455143b217844be5856ad1
@@ -80,12 +93,18 @@ onMounted(() => {
 <template>
   <div>
 
-    <h1>Annotate Intel</h1>
+    <h1>Annotate Intel "{{ intel.title }}"</h1>
     <form @submit.prevent="submitAnnotations" class="flex flex-col gap-4">
-      <h1>Title: {{ intel.title }}</h1>
+      
       <input type="hidden" name="id" v-model="intel.id" />
 
-      <textarea name="intel" id="intel" readonly v-model="intel.content"></textarea>
+      <textarea 
+        name="intel" 
+        id="intel" 
+        readonly 
+        v-model="intel.content"
+        @select="askForKeyword">
+      </textarea>
       <div class="flex gap-4">
 
         <button type="submit">Save Annotations</button>
