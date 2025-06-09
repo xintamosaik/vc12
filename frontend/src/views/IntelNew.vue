@@ -23,7 +23,7 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
 function submitIntel() {
   // Send the intel object as JSON to the backend
-  fetch( `${API_URL}/intel/new`, {
+  fetch( `${API_URL}/api/intel/new`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

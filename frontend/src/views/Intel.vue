@@ -12,7 +12,7 @@ type Intel = {
 const intelList = ref([] as Intel[])
 
 onMounted(async () => {
-  const res = await fetch(`${API_URL}/intel/all`)
+  const res = await fetch(`${API_URL}/api/intel/all`)
   intelList.value = await res.json() as Intel[]
 })
 </script>

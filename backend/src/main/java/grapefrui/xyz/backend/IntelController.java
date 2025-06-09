@@ -8,17 +8,17 @@ public class IntelController {
     @Autowired
     private IntelRepository intelRepository;
 
-    @PostMapping("/intel/new")
+    @PostMapping("/api/intel/new")
     public Intel postMethodName(@RequestBody Intel entity) {
         return intelRepository.save(entity);
     }
 
-    @GetMapping("/intel/all")
+    @GetMapping("/api/intel/all")
     public Iterable<Intel> getAllIntel() {
         return intelRepository.findAll();
     }
 
-    @GetMapping("/intel/{id}")
+    @GetMapping("/api/intel/{id}")
     public Intel getIntelById(@PathVariable String id) {
         return intelRepository.findById(id).orElse(null);
     }

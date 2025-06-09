@@ -1,16 +1,27 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+
+import { reactive, onMounted } from 'vue'
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
 const intel = reactive({
+  id: 0,
   title: '',
   description: '',
   content: ''
 })
 
+const annotation = reactive({
+  start: 0,
+  end: 0,
+  text: '',
+})
 
-function lockIntel() {
+const annotations = reactive([] as typeof annotation[])
+
+function clearAnnotations() {
   // Add your locking logic here
-  console.log('Locking Intel:', intel)
+  console.log('Clearing Annotations:', intel)
   // if the status is locked we have to write a dialog to confirm the lock which also clears the intel from all previous annotations
 
   // Locking it will be a database operation. It is not of big consequence to lock but it is a big consequence to unlock.
@@ -19,10 +30,10 @@ function lockIntel() {
   // This is to prevent a complicated review process.
 
 }
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
-function submitIntel() {
+
+function submitAnnotations() {
   // Send the intel object as JSON to the backend
-  fetch(`${API_URL}/intel/edit`, {
+  fetch(`${API_URL}/intel/annotate`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -41,31 +52,44 @@ function submitIntel() {
 }
 
 
+function fetchIntel(id: string) {
+  fetch(`${API_URL}/api/intel/${id}`)
+    .then(response => response.json())
+    .then(data => {
+      intel.id = data.id
+      intel.title = data.title
+      intel.description = data.description
+      intel.content = data.content
+    })
+    .catch(error => {
+      console.error('Error fetching intel:', error)
+    })
+}
+
+onMounted(() => {
+  const urlParams = new URLSearchParams(window.location.search);
+  // http://localhost:5173/intel/view/68455143b217844be5856ad1
+  const intelId = window.location.pathname.split('/').pop();
+  console.log('Intel ID from URL:', intelId);
+  if (intelId) {
+    fetchIntel(intelId);
+  }
+});
+
 </script>
 <template>
   <div>
 
-    <h1>Capture New Intel</h1>
-    <form @submit.prevent="submitIntel" class="flex flex-col gap-4">
-      <div class="flex flex-col">
-        <label title="This should be a brief summary of the content. It will show on tooltips and in the Intel list."
-          for="title">Title*</label>
-        <input type="text" id="title" v-model="intel.title" required />
-      </div>
+    <h1>Annotate Intel</h1>
+    <form @submit.prevent="submitAnnotations" class="flex flex-col gap-4">
+      <h1>Title: {{ intel.title }}</h1>
+      <input type="hidden" name="id" v-model="intel.id" />
 
-      <div class="flex flex-col">
-        <label for="description"
-          title="This is optional, but can help you to remmber where the intel came from.">Description</label>
-        <textarea id="description" v-model="intel.description"></textarea>
-      </div>
-      <div class="flex flex-col">
-        <label for="description"
-          title="This is the main body of the Intel. It can be a long text, or a short summary. See help for more.">Content</label>
-        <textarea id="description" v-model="intel.content" rows="20" required></textarea>
-      </div>
+      <textarea name="intel" id="intel" readonly v-model="intel.content"></textarea>
       <div class="flex gap-4">
-        <button type="submit">Submit Intel</button>
-        <button type="button" @click.prevent="lockIntel">Lock</button>
+
+        <button type="submit">Save Annotations</button>
+        <button type="button" @click.prevent="clearAnnotations">Clear</button>
 
         <button type="button" popovertarget="help" popoveraction="toggle">help</button>
       </div>
@@ -74,42 +98,7 @@ function submitIntel() {
 
 
     <div popover id="help" class="big flex-col gap-4">
-      <div>
-        <h2>Title</h2>
-        <p>
-          The title of the Intel. This should be a brief summary of the content. It will show on tooltips and in the
-          Intel
-          list.
-        </p>
-      </div>
 
-      <div>
-        <h2>Description</h2>
-        <p>
-          The description of the Intel. This is optional, but can help you to remmber where the intel came from.
-        </p>
-      </div>
-
-      <div>
-        <h2>Content</h2>
-        <p>
-          The content of the Intel. This is the main body of the Intel. It can be a long text, or a short summary.
-        </p>
-        <p>
-          The content should be in plain text or markdown. Markdown will just enhance the readability of the content,
-          but
-          is not required.
-        </p>
-      </div>
-
-      <div>
-        <h2>Lock</h2>
-        <p>
-          The lock button will lock the Intel, preventing further edits. This is necessary to start the review process.
-          At
-          this point we don't support edits after annotations, becaues it requires a compicated review process.
-        </p>
-      </div>
     </div>
 
   </div>
